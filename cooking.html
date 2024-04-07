@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cooking Challenges</title>
+<link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file for styling -->
+</head>
+<body>
+    <header>
+        <h1>Cooking Challenges</h1>
+        <nav>
+            <ul>
+                <li><a href="#viewChallenges">View Challenges</a></li>
+                <li><a href="#submitEntry">Submit Entry</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="viewChallenges">
+        <h2>Current Challenges</h2>
+        <div class="challenge">
+            <h3>Challenge Name</h3>
+            <p>Description of the challenge...</p>
+            <p>Deadline: DD/MM/YYYY</p>
+            <button class="submitBtn">Submit Entry</button>
+        </div>
+        <!-- Add more challenge sections as needed -->
+    </section>
+
+    <section id="submitEntry">
+        <h2>Submit Entry</h2>
+        <form id="entryForm">
+            <label for="challenge">Select Challenge:</label>
+            <select id="challenge" name="challenge">
+                <option value="challenge1">Challenge 1</option>
+                <option value="challenge2">Challenge 2</option>
+                <!-- Add options dynamically based on available challenges -->
+            </select><br>
+
+            <label for="recipeName">Recipe Name:</label><br>
+            <input type="text" id="recipeName" name="recipeName" required><br>
+            
+            <label for="ingredients">Ingredients:</label><br>
+            <textarea id="ingredients" name="ingredients" required></textarea><br>
+            
+            <label for="instructions">Instructions:</label><br>
+            <textarea id="instructions" name="instructions" required></textarea><br>
+            
+            <button type="submit">Submit Entry</button>
+        </form>
+    </section>
+
+    <section id="about">
+        <h2>About Cooking Challenges</h2>
+        <p>Description of the cooking challenges platform...</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cooking Challenges. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script> <!-- Link to external JavaScript file for interactivity -->
+</body>
+</html>

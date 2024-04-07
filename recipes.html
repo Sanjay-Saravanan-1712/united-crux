@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipes | United Crux</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>UNITED CRUX</h1>
+    <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="recipes.html">Recipes</a></li>
+        <li><a href="submit.html">Submit Recipe</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <section>
+      <h2>Recipes</h2>
+      <ul id="recipe-list">
+        <!-- Recipes will be dynamically added here -->
+      </ul>
+    </section>
+    
+    <section id="recipe-details" style="display: none;">
+      <h2>Recipe Details</h2>
+      <h3 id="selected-recipe-name"></h3>
+      <p id="selected-recipe-ingredients"></p>
+      <p id="selected-recipe-instructions"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 United Crux</p>
+  </footer>
+
+  <script>
+    // Function to retrieve and display submitted recipes
+    function displayRecipes() {
+      var recipeList = document.getElementById("recipe-list");
+      recipeList.innerHTML = ""; // Clear previous entries
+      
+      // Loop through local storage and display recipes
+      for (var i = 0; i < localStorage.length; i++) {
+        var recipeName = localStorage.key(i);
+        var ingredients = localStorage.getItem(recipeName);
+        
+        var listItem = document.createElement("li");
+        listItem.innerHTML = "<h3>" + recipeName + "</h3><p>Ingredients: " + ingredients + "</p>";
+        
+        // Add click event to show recipe details
+        listItem.addEventListener("click", function() {
+          var selectedRecipeName = this.querySelector("h3").textContent;
+          var selectedRecipeIngredients = this.querySelector("p").textContent.substring(12); // Remove "Ingredients: " prefix
+          var selectedRecipeInstructions = localStorage.getItem(selectedRecipeName + "-instructions") || "Instructions not available";
+          
+          document.getElementById("selected-recipe-name").textContent = selectedRecipeName;
+          document.getElementById("selected-recipe-ingredients").textContent = "Ingredients: " + selectedRecipeIngredients;
+          document.getElementById("selected-recipe-instructions").textContent = "Instructions: " + selectedRecipeInstructions;
+          
+          // Show recipe details section and hide recipe list
+          document.getElementById("recipe-details").style.display = "block";
+          recipeList.style.display = "none";
+        });
+        
+        recipeList.appendChild(listItem);
+      }
+    }
+
+    // Call the displayRecipes function when the page loads
+    window.onload = displayRecipes;
+  </script>
+</body>
+</html>

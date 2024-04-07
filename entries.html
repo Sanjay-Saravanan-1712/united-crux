@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Submitted Entries</title>
+</head>
+<body>
+    <h1>Submitted Entries</h1>
+    
+    {% if entries %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Challenge</th>
+                    <th>Recipe Name</th>
+                    <th>Ingredients</th>
+                    <th>Instructions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in entries %}
+                <tr>
+                    <td>{{ entry.challenge }}</td>
+                    <td>{{ entry.recipe_name }}</td>
+                    <td>{{ entry.ingredients }}</td>
+                    <td>{{ entry.instructions }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No entries submitted yet.</p>
+    {% endif %}
+</body>
+</html>

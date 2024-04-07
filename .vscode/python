@@ -1,0 +1,40 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
+# Dummy data to store submitted entries (not persistent)
+entries = []
+
+# Route for the home page
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+# Route for submitting an entry
+@app.route('/submit_entry', methods=['POST'])
+def submit_entry():
+    if request.method == 'POST':
+        challenge = request.form['challenge']
+        recipe_name = request.form['recipeName']
+        ingredients = request.form['ingredients']
+        instructions = request.form['instructions']
+
+        # Store the submitted entry
+        entry = {
+            'challenge': challenge,
+            'recipe_name': recipe_name,
+            'ingredients': ingredients,
+            'instructions': instructions
+        }
+        entries.append(entry)
+
+        # Redirect to the home page
+        return render_template('index.html', message="Entry submitted successfully!")
+
+# Route for viewing all submitted entries
+@app.route('/view_entries')
+def view_entries():
+    return render_template('entries.html', entries=entries)
+
+if __name__ == '__main__':
+    app.run(debug=True)
